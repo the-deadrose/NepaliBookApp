@@ -42,3 +42,46 @@ List<Book>books = [
   )
 
 ];
+
+List<Book>morebooks = [
+  Book(
+      rating: '',
+      title: 'Shirishko Phool',
+      genres: 'Novel',
+      detail: '',
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/e1/Shirish_ko_Phool.jpg'
+  ),
+
+  Book(
+      rating: '',
+      title: 'China Harayeko Manchhe',
+      genres: 'Autobiography',
+      detail: '',
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/en/b/b5/China_Harayeko_Manchhe.jpg'
+  ),
+
+  Book(
+      rating: '',
+      title: 'Jiwan Kada Ki Phool',
+      genres: 'Novel',
+      detail: '',
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/en/2/26/Jiwan_Kada_Ki_Phool_by_Jhamak_Ghimire_2010.jpg'
+  ),
+
+
+  Book(
+      rating: '',
+      title: 'Saaya',
+      genres: 'Romantic',
+      detail: '',
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/en/2/26/Saaya_novel.jpg'
+  ),
+
+  Book(
+      rating: '',
+      title: 'Phirphire',
+      genres: 'Novel',
+      detail: '',
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/en/a/a0/Phirphire_%28novel%29.jpg'
+  )
+];

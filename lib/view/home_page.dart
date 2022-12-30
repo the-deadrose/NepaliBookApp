@@ -1,9 +1,10 @@
-import 'dart:math';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_ui/constant/color.dart';
 import 'package:flutter_ui/models/book.dart';
+
 
 
 
@@ -38,35 +39,88 @@ class HomePage extends StatelessWidget {
         children: [
           Container(
             width: double.infinity,
+            margin: EdgeInsets.only(right: 18),
             child: Image.asset('assets/banner.png'),
           ),
           Container(
-            height: 200,
+            margin: EdgeInsets.only(right: 15, left: 15),
+            height: 48,
+            //color: Colors.blue,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                       width: 41,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text('All',style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontSize: 20
+                        ),),
+                      ),
+                    ),
+                    Container(
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text('Recommended',style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 17
+                        ),),
+                      ),
+                    ),
+                    Container(
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text('Popular book',style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 17
+                        ),),
+                      ),
+                    ),
+                    Container(
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text('My books',style: TextStyle(
+                            color: Colors.grey,
+                          fontSize: 17
+                        ),),
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 15, right: 15),
+            height: 180,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: books.length,
                 itemBuilder: (context, index){
                 return Container(
-                  //color: Colors.red,
-                  padding: EdgeInsets.symmetric(horizontal: 8),
-                  margin: EdgeInsets.only(right: 4),
+                  padding: EdgeInsets.symmetric(horizontal: 5),
                   alignment: Alignment.bottomLeft,
                   child: Stack(
                     children: [
                       Container(
-                        height: 180,
+                        height: 165,
                         alignment: Alignment.bottomLeft,
 
                         child: Container(
                           height: 140,
-                          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+
+                          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
                           decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12)
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.white
                           ),
                           child: Row(
                             children: [Container(
-                              width: 110,
+                              width: 105,
                               
                             ),
                               Container(
@@ -101,7 +155,7 @@ class HomePage extends StatelessWidget {
                       ),
                       Container(
                         height: 150,
-                        margin: EdgeInsets.only(left: 12,
+                        margin: EdgeInsets.only(left: 8,
                         top: 6,),
                         child: Image.network(books[index].imageUrl, height: 150, width: 100, fit: BoxFit.cover,),
                       )
@@ -110,6 +164,40 @@ class HomePage extends StatelessWidget {
 
                 );
                 }
+            ),
+          ),
+          SizedBox(height: 5,),
+          Container(
+            height: 50,
+            margin: EdgeInsets.symmetric(horizontal: 12),
+            alignment: Alignment.centerLeft,
+            child: Text('You may also like',style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500
+            ),),
+          ),
+          SizedBox(height: 5,),
+          Container(
+            height: 220,
+            margin: EdgeInsets.only(left: 15, right: 15),
+            child: ListView.builder(
+              itemCount: morebooks.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index){
+                return  Container(
+                  width: 110,
+                  margin: EdgeInsets.only(right: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Image.network(morebooks[index].imageUrl,height: 160, width: 100, fit: BoxFit.cover,),
+                      SizedBox(height: 10,),
+                      Text(morebooks[index].title,style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500,color: Colors.black87),),
+                      Text(morebooks[index].genres,style: TextStyle(fontSize: 13,color: textColor),)
+                    ],
+                  ),
+                );
+              }
             ),
           )
         ],
