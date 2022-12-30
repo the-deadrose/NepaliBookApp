@@ -39,7 +39,6 @@ class HomePage extends StatelessWidget {
         children: [
           Container(
             width: double.infinity,
-            margin: EdgeInsets.only(right: 18),
             child: Image.asset('assets/banner.png'),
           ),
           Container(
@@ -186,7 +185,7 @@ class HomePage extends StatelessWidget {
               itemBuilder: (context, index){
                 return  Container(
                   width: 110,
-                  margin: EdgeInsets.only(right: 15),
+                  margin: EdgeInsets.only(right: 4),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
