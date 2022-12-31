@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_ui/constant/color.dart';
 import 'package:flutter_ui/models/book.dart';
+import 'package:flutter_ui/view/book_detail.dart';
 
 
 
@@ -27,7 +28,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: appColor,
         elevation: 0,
         toolbarHeight: 50,
-        title: Text('Hi John ,', style: TextStyle(color: blackColor)),
+        title: Text('Hi Bishal,', style: TextStyle(color: blackColor)),
         actions: [
           Icon(Icons.search, color: Colors.black, size: 30.h,),
           SizedBox(width: 10,),
@@ -100,67 +101,78 @@ class HomePage extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: books.length,
                 itemBuilder: (context, index){
-                return Container(
-                  padding: EdgeInsets.symmetric(horizontal: 5),
-                  alignment: Alignment.bottomLeft,
-                  child: Stack(
-                    children: [
-                      Container(
-                        height: 165,
-                        alignment: Alignment.bottomLeft,
+                return GestureDetector(
+                  onTap: () {
 
-                        child: Container(
-                          height: 140,
 
-                          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.white
-                          ),
-                          child: Row(
-                            children: [Container(
-                              width: 105,
-                              
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => BookDetail()
+                    ));
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 5),
+                    alignment: Alignment.bottomLeft,
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: 165,
+                          alignment: Alignment.bottomLeft,
+
+                          child: Container(
+                            height: 140,
+
+                            padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: Colors.white
                             ),
-                              Container(
-                                 width:200.w,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text( books[index].title, style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500
-                                    ),),
-                                    SizedBox(height: 8,),
-                                    Text(books[index].detail,maxLines: 4, style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 12
-                                    ),),
-                                    SizedBox(height: 8,),
-                                    Row(
-                                      children: [
-                                        Text(books[index].rating),
-                                        Spacer(),
-                                        Text(books[index].genres,style: TextStyle(color: textColor),)
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        
-                      ),
-                      Container(
-                        height: 150,
-                        margin: EdgeInsets.only(left: 8,
-                        top: 6,),
-                        child: Image.network(books[index].imageUrl, height: 150, width: 100, fit: BoxFit.cover,),
-                      )
-                    ],
-                  ),
+                            child: Row(
+                              children: [Container(
+                                width: 105,
 
+                              ),
+                                Container(
+                                   width:200.w,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text( books[index].title, style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500
+                                      ),),
+                                      SizedBox(height: 8,),
+                                      Text(books[index].detail,maxLines: 4, style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 12
+                                      ),),
+                                      SizedBox(height: 8,),
+                                      Row(
+                                        children: [
+                                          Text(books[index].rating),
+                                          Spacer(),
+                                          Text(books[index].genres,style: TextStyle(color: textColor),)
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+
+                        ),
+                        Container(
+                          height: 150,
+                          margin: EdgeInsets.only(
+                            left: 8,
+                          top: 6,
+                          ),
+                          child: Image.network(books[index].imageUrl, height: 150, width: 100, fit: BoxFit.cover,),
+                        )
+                      ],
+                    ),
+
+                  ),
                 );
                 }
             ),
