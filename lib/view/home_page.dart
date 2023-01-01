@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_ui/constant/color.dart';
 import 'package:flutter_ui/models/book.dart';
 import 'package:flutter_ui/view/book_detail.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 
 
@@ -47,12 +49,12 @@ class HomePage extends StatelessWidget {
             height: 48,
             //color: Colors.blue,
             child: ListView(
+              physics: BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               children: [
                 Row(
                   children: [
                     Container(
-                       width: 41,
                       child: TextButton(
                         onPressed: () {},
                         child: Text('All',style: TextStyle(
@@ -98,16 +100,13 @@ class HomePage extends StatelessWidget {
             margin: EdgeInsets.only(left: 15, right: 15),
             height: 180,
             child: ListView.builder(
+              physics: BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               itemCount: books.length,
                 itemBuilder: (context, index){
-                return GestureDetector(
+                return InkWell(
                   onTap: () {
-
-
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => BookDetail()
-                    ));
+                    Get.to(() => BookDetail(books[index]));
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 5),
@@ -192,6 +191,7 @@ class HomePage extends StatelessWidget {
             height: 220,
             margin: EdgeInsets.only(left: 15, right: 15),
             child: ListView.builder(
+              physics: BouncingScrollPhysics(),
               itemCount: morebooks.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index){

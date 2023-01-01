@@ -21,7 +21,7 @@ List<Book>books = [
       rating: '⭐⭐⭐⭐⭐',
       title: 'Muna Madan',
       genres: 'Romantic',
-      detail: 'Muna Madan follows the life of Madan, a Chhetri man from Kathmandu who leaves Muna, his wife, to go to Lhasa to earn a fortune. He is cautioned against leaving by both Muna and his elderly mother, but he decides to leave anyway. While he initially intends to spend just a few weeks in Lhasa, he spends a longer time there, becoming entranced by the city\'s beauty. He finally sets off for Kathmandu but falls sick with cholera on the way. His travelling companion, Ram, returns to Kathmandu and tells Muna that her husband has died.',
+      detail: 'Muna Madan follows the life of Madan, a Chhetri man from Kathmandu who leaves Muna, his wife, to go to Lhasa to earn a fortune. He is cautioned against leaving by both Muna and his elderly mother, but he decides to leave anyway. While he initially intends to spend just a few weeks in Lhasa, he spends a longer time there, becoming entranced by the city\'s beauty.',
       imageUrl: 'https://upload.wikimedia.org/wikipedia/en/1/1d/Muna_Madan_-_book_cover.jpg'
   ),
 

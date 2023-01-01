@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_ui/constant/color.dart';
 import 'package:flutter_ui/view/home_page.dart';
+import 'package:get/get.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -22,7 +23,7 @@ void main() {
     designSize: const Size(392, 803),
     minTextAdapt: true,
     builder: (context , child) {
-    return MaterialApp(
+    return GetMaterialApp(
     debugShowCheckedModeBanner: false,
     home: child,
     );
