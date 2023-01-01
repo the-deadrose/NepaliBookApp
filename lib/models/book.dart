@@ -45,43 +45,43 @@ List<Book>books = [
 
 List<Book>morebooks = [
   Book(
-      rating: '',
+      rating: '⭐⭐⭐⭐⭐',
       title: 'Shirishko Phool',
       genres: 'Novel',
-      detail: '',
+      detail: 'Suyog meets Sakambari and her two sisters through Shivaraj. Suyog is a lonely middle-aged man and sees the three sisters with eyes of lust. He views Mujura as the quintessential woman with all the feminine virtues and the most logical choice for a wife. However, he is drawn towards Sakambari who is a rebellious personality who does not adhere to the traditional expectations of how a woman should act or dress.',
       imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/e1/Shirish_ko_Phool.jpg'
   ),
 
   Book(
-      rating: '',
+      rating: '⭐⭐⭐⭐⭐',
       title: 'China Harayeko Manchhe',
       genres: 'Autobiography',
-      detail: '',
+      detail: 'The storyline of Cheena Harayako Manchhe, is about a simple, god-fearing man who happens to lose his "China" or "Cheena" (horoscope). The autobiography depicts the author\'s childhood memories, fantasies and the struggles he had to face during his adolescent years. “The book is the tribute to my late wife Meera and proceeds from the book will go to a trust of her name,” said the author at a press meet.',
       imageUrl: 'https://upload.wikimedia.org/wikipedia/en/b/b5/China_Harayeko_Manchhe.jpg'
   ),
 
   Book(
-      rating: '',
+      rating: '⭐⭐⭐⭐⭐',
       title: 'Jiwan Kada Ki Phool',
       genres: 'Novel',
-      detail: '',
+      detail: 'Jiwan Kada Ki Phool\' (Nepali:जीवन काँडा कि फूल) is a book and Madan Puraskar winner written by Jhamak Ghimire about her own story. It has been printed seven times within two years making it the Nepali best seller of all time. It has also received many other awards. It has recently been translated into English as “A flower in the midst of thorns”. It is all about her life and the difficulties she faced.',
       imageUrl: 'https://upload.wikimedia.org/wikipedia/en/2/26/Jiwan_Kada_Ki_Phool_by_Jhamak_Ghimire_2010.jpg'
   ),
 
 
   Book(
-      rating: '',
+      rating: '⭐⭐⭐⭐⭐',
       title: 'Saaya',
       genres: 'Romantic',
-      detail: '',
+      detail: 'It is the sequel of Summer Love. It is based on point of view of narrator, Atit, Saaya and Susmita. According to the story, narrator takes the responsibility to mend the things between Atit and Saaya. Two years after the book about Atit\'s love story is published, the writer comes in contact with Saaya to know her story. Saaya says about her opinions and why she dissolved the relationship with Atit. She also says about physical relationship between Susmita and Atit. ',
       imageUrl: 'https://upload.wikimedia.org/wikipedia/en/2/26/Saaya_novel.jpg'
   ),
 
   Book(
-      rating: '',
+      rating: '⭐⭐⭐⭐⭐',
       title: 'Phirphire',
       genres: 'Novel',
-      detail: '',
+      detail: '“PhirPhire” starts with the ending i.e. it tells the story in a flash back memory of the writer. The novel is about the story of two ordinary boys, Pawan and Basanta and their innocent friendship. The story starts when Basanta decides to go to his village after 15 years to see his house for the last time before it is demolished. The story ends after Basanta leaves the village and returns to his life.',
       imageUrl: 'https://upload.wikimedia.org/wikipedia/en/a/a0/Phirphire_%28novel%29.jpg'
   )
 ];

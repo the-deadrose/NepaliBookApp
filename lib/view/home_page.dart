@@ -195,17 +195,22 @@ class HomePage extends StatelessWidget {
               itemCount: morebooks.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index){
-                return  Container(
-                  width: 110,
-                  margin: EdgeInsets.only(right: 4),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Image.network(morebooks[index].imageUrl,height: 160, width: 100, fit: BoxFit.cover,),
-                      SizedBox(height: 10,),
-                      Text(morebooks[index].title,style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500,color: Colors.black87),),
-                      Text(morebooks[index].genres,style: TextStyle(fontSize: 13,color: textColor),)
-                    ],
+                return  InkWell(
+                  onTap: () {
+                    Get.to(() => BookDetail(morebooks[index]));
+                  },
+                  child: Container(
+                    width: 110,
+                    margin: EdgeInsets.only(right: 4),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Image.network(morebooks[index].imageUrl,height: 160, width: 100, fit: BoxFit.cover,),
+                        SizedBox(height: 10,),
+                        Text(morebooks[index].title,style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500,color: Colors.black87),),
+                        Text(morebooks[index].genres,style: TextStyle(fontSize: 13,color: textColor),)
+                      ],
+                    ),
                   ),
                 );
               }
