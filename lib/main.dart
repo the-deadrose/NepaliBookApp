@@ -20,7 +20,7 @@ void main() {
     @override
     Widget build(BuildContext context) {
     return ScreenUtilInit(
-    designSize: const Size(392, 803),
+    designSize: const Size(411, 866),
     minTextAdapt: true,
     builder: (context , child) {
     return GetMaterialApp(
