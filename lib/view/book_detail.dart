@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_ui/models/book.dart';
 
 import '../constant/color.dart';
@@ -12,7 +13,7 @@ BookDetail(this.book);
     return Scaffold(
         body: ListView(
           children: [
-            Image.network(book.imageUrl, height: 350, fit: BoxFit.cover,),
+            Image.network(book.imageUrl, height: 350.h, fit: BoxFit.cover,),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
@@ -21,21 +22,21 @@ BookDetail(this.book);
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(book.title,style: TextStyle(
-                          fontSize: 21, fontWeight: FontWeight.w500
+                          fontSize: 21.sp, fontWeight: FontWeight.w500
                       ),),
                       Column(
                         children: [
                           Text(book.rating),
-                          SizedBox(height: 5,),
+                          SizedBox(height: 5.h,),
                           Text(book.genres, style: TextStyle(
-                              fontSize: 16, color: textColor
+                              fontSize: 16.sp, color: textColor
                           ),)
                         ],
                       )
                     ],
                   ),
                   Text(book.detail, textAlign: TextAlign.justify, style: TextStyle(
-                      color: Colors.grey, fontSize: 18
+                      color: Colors.grey, fontSize: 18.sp
                   ),),
 
                   Padding(
@@ -53,7 +54,7 @@ BookDetail(this.book);
                             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15)
                           ),
                             onPressed: () {},
-                            child: Text('Read Book', style: TextStyle(fontSize: 18,color: Colors.white),)
+                            child: Text('Read Book', style: TextStyle(fontSize: 18.sp,color: Colors.white),)
                         ),
                         OutlinedButton(
                           style: OutlinedButton.styleFrom(
@@ -63,7 +64,7 @@ BookDetail(this.book);
                             ),
                           ),
                             onPressed: () {},
-                            child: Text('More info', style: TextStyle(fontSize: 18, color: Colors.grey),)
+                            child: Text('More info', style: TextStyle(fontSize: 18.sp, color: Colors.grey),)
                         )
                       ],
                     ),
@@ -88,7 +89,7 @@ class MoreBookDetail extends StatelessWidget {
     return Scaffold(
         body: ListView(
           children: [
-            Image.network(morebook.imageUrl, height: 350, fit: BoxFit.cover,),
+            Image.network(morebook.imageUrl, height: 350.h, fit: BoxFit.cover,),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
@@ -97,21 +98,21 @@ class MoreBookDetail extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(morebook.title,style: TextStyle(
-                          fontSize: 21, fontWeight: FontWeight.w500
+                          fontSize: 21.sp, fontWeight: FontWeight.w500
                       ),),
                       Column(
                         children: [
                           Text(morebook.rating),
-                          SizedBox(height: 5,),
+                          SizedBox(height: 5.h,),
                           Text(morebook.genres, style: TextStyle(
-                              fontSize: 16, color: textColor
+                              fontSize: 16.sp, color: textColor
                           ),)
                         ],
                       )
                     ],
                   ),
                   Text(morebook.detail, style: TextStyle(
-                      color: Colors.grey, fontSize: 18
+                      color: Colors.grey, fontSize: 18.sp
                   ),),
 
                   Padding(
@@ -129,7 +130,7 @@ class MoreBookDetail extends StatelessWidget {
                                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15)
                             ),
                             onPressed: () {},
-                            child: Text('Read Book', style: TextStyle(fontSize: 18,color: Colors.white),)
+                            child: Text('Read Book', style: TextStyle(fontSize: 18.sp,color: Colors.white),)
                         ),
                         OutlinedButton(
                             style: OutlinedButton.styleFrom(
@@ -139,7 +140,7 @@ class MoreBookDetail extends StatelessWidget {
                               ),
                             ),
                             onPressed: () {},
-                            child: Text('More info', style: TextStyle(fontSize: 18, color: Colors.grey),)
+                            child: Text('More info', style: TextStyle(fontSize: 18.sp, color: Colors.grey),)
                         )
                       ],
                     ),
