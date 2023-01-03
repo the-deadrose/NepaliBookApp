@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_ui/constant/color.dart';
 import 'package:flutter_ui/provider/counter_provider.dart';
+import 'package:flutter_ui/view/home_page.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -29,7 +30,7 @@ void main() {
     home: child,
     );
     },
-    child:  Count(),
+    child:  HomePage(),
     );
     }
     }
@@ -53,7 +54,8 @@ void main() {
                         children: [
                           ElevatedButton(
                               onPressed: () {
-                                ref.read(counterProvider).addNumber();
+                                 ref.read(counterProvider).addNumber();
+
                               },
                               child: Text('Increase')
                           ),
