@@ -21,8 +21,14 @@ void removeToDo(Todo todo){
 
 }
 
-// void updateToDo(Todo todo){
-//     state[index] = todo;
+void updateToDo(int index, Todo todo){
+    state[index] = todo;
+    state = [...state];
+
+}
+
+// void checkBoxChange(bool? value, int index){
+// state[index] = !state[index];
 //
 // }
 
