@@ -30,7 +30,7 @@ void main(){
   getData();
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-        statusBarColor: appColor,
+        //statusBarColor: appColor,
       )
   );
   runApp(ProviderScope(child: Home()));
@@ -46,6 +46,7 @@ void main(){
     minTextAdapt: true,
     builder: (context , child) {
     return GetMaterialApp(
+      theme: ThemeData.dark(),
     debugShowCheckedModeBanner: false,
     home: child,
     );

@@ -1,13 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_ui/domain/i_movie.dart';
-import 'package:flutter_ui/domain/movie.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MovieService implements MovieInterface{
-  final Dio dio;
-  MovieService(this.dio);
-  @override
-  Future<Either<String, List<Movie>>> getMovieCategory({required String apiPath}) async {
+import '../models/movie.dart';
+
+
+
+class MovieService{
+  static final dio = Dio();
+  static Future<Either<String, List<Movie>>> getMovieCategory({required String apiPath}) async {
    try{
      final response = await dio.get(apiPath);
      final data = (response.data['results'] as List).map((e) => Movie.fromJson(e)).toList();
