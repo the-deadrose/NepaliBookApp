@@ -2,9 +2,10 @@
     package="com.example.flutter_ui">
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:label="E-Book"
+        android:label="Movie Tmdb"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:usesCleartextTraffic="true"
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"

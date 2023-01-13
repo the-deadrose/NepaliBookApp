@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_ui/models/movie.dart';
+import 'package:flutter_ui/widgets/tab_bar_widget.dart';
     
     
     class HomePage extends ConsumerWidget {
 
       @override
       Widget build(BuildContext context, ref) {
+        FlutterNativeSplash.remove();
         return DefaultTabController(
           length: 3,
           child: Scaffold(
@@ -22,11 +26,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                   tabs: [
                     Tab(text: 'Popular',),
                     Tab(text: 'Upcomming',),
-                    Tab(text: 'TopRated',)
+                    Tab(text: 'TopRated',),
                   ],
                 ),
               ),
-            body: Container(),
+            body: TabBarView(
+              children: [
+                TabBarWidget(Categories.popular,'1'),
+                TabBarWidget(Categories.upcoming,'2'),
+                TabBarWidget(Categories.top_rated,'3'),
+              ]
+            )
           ),
         );
       }

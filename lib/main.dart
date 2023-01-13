@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_ui/constant/color.dart';
 import 'package:flutter_ui/presentation/home_page.dart';
 import 'package:get/get.dart';
 
@@ -26,8 +25,10 @@ Future<void>  getData () async{
 
 
 
-void main(){
-  getData();
+void main() async{
+  await Future.delayed(Duration(milliseconds: 500));
+  WidgetsFlutterBinding.ensureInitialized();
+
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         //statusBarColor: appColor,

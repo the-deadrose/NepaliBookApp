@@ -43,17 +43,39 @@ dependencies:
   intl: ^0.18.0
   dio: ^4.0.6
   dartz: ^0.10.1
+  cached_network_image: ^3.2.3
+  pod_player: ^0.1.0
+  flutter_spinkit: ^5.1.0
+  fluttertoast: ^8.1.2
+  flutter_native_splash: ^2.2.16
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/images/movie.png
+  color_dark: "#121212"
+
+
+
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.11.0
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: false
+  image_path: "assets/images/movie.png"
+  min_sdk_android: 21
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+#  flutter_lints: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -68,7 +90,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/
+    - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
