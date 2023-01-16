@@ -3,7 +3,11 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_ui/models/movie.dart';
+import 'package:flutter_ui/presentation/search_page.dart';
 import 'package:flutter_ui/widgets/tab_bar_widget.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/routes/transitions_type.dart';
     
     
     class HomePage extends ConsumerWidget {
@@ -19,7 +23,9 @@ import 'package:flutter_ui/widgets/tab_bar_widget.dart';
                 title:   Text('Movie Tmdb', style: TextStyle(color: Colors.pink.shade500, fontSize: 25.sp),),
                 actions: [
                   IconButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        Get.to(() => SearchPage(), transition: Transition.leftToRight);
+                      },
                       icon: Icon(Icons.search, size: 30.w,))
                 ],
                 bottom: TabBar(

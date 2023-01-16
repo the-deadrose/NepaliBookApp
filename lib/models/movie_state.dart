@@ -8,6 +8,7 @@ class MovieState{
   final List<Movie> popularMovies;
   final List<Movie> topRatedMovies;
   final List<Movie> upcomingMovies;
+  final List<Movie> searchMovies;
   final String errorMessage;
 
   MovieState({
@@ -15,7 +16,8 @@ class MovieState{
     required this.isLoaded,
     required this.popularMovies,
     required this.topRatedMovies,
-    required this.upcomingMovies
+    required this.upcomingMovies,
+    required this.searchMovies
   });
 
   MovieState copyWith({
@@ -23,14 +25,16 @@ class MovieState{
     String? errorMessage,
     List<Movie>? popularMovies,
     List<Movie>? topRatedMovies,
-    List<Movie>? upcomingMovies
+    List<Movie>? upcomingMovies,
+    List<Movie>? searchMovies
   }) {
     return MovieState(
         errorMessage: errorMessage ??  this.errorMessage,
         isLoaded: isLoaded ?? this.isLoaded,
         popularMovies: popularMovies ?? this.popularMovies,
         topRatedMovies: topRatedMovies ?? this.topRatedMovies,
-        upcomingMovies: upcomingMovies ?? this.upcomingMovies
+        upcomingMovies: upcomingMovies ?? this.upcomingMovies,
+        searchMovies: searchMovies ?? this.searchMovies
     );
   }
 

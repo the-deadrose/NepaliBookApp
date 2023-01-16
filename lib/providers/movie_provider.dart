@@ -14,7 +14,8 @@ final movieProvider = StateNotifierProvider.family<MovieNotifier, MovieState, Ca
     MovieState(errorMessage: '', isLoaded: false,
         upcomingMovies: [],
         topRatedMovies: [],
-        popularMovies: []
+        popularMovies: [],
+        searchMovies: []
     ),
     cat
 )
