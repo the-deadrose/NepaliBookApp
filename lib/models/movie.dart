@@ -16,6 +16,7 @@ class Movie{
   final String vote_average;
 
 
+
   const Movie({
     required this.id,
     required this.title,

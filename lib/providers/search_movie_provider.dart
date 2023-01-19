@@ -9,7 +9,9 @@ final searchProvider = StateNotifierProvider.autoDispose<SearchNotifier, MovieSt
       upcomingMovies: [],
       topRatedMovies: [],
       popularMovies: [],
-      searchMovies: []
+      searchMovies: [],
+    isLoadMore: false,
+    page: 1
   ),
 
 )

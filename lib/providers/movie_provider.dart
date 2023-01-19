@@ -15,7 +15,9 @@ final movieProvider = StateNotifierProvider.family<MovieNotifier, MovieState, Ca
         upcomingMovies: [],
         topRatedMovies: [],
         popularMovies: [],
-        searchMovies: []
+        searchMovies: [],
+        page: 1,
+        isLoadMore: false
     ),
     cat
 )
@@ -29,37 +31,44 @@ class MovieNotifier extends StateNotifier<MovieState> {
 
   Future<void> getMovieByCategory() async {
     if (category == Categories.upcoming) {
-      state = state.copyWith(isLoaded: true, errorMessage: '');
-      final response = await MovieService.getMovieCategory(
-          apiPath: Api.upcomingMovie);
+      state = state.copyWith(isLoaded: state.isLoadMore ? false: true, errorMessage: '');      final response = await MovieService.getMovieCategory(
+          apiPath: Api.upcomingMovie, page: state.page);
       response.fold((l) {
-        state = state.copyWith(isLoaded: false, errorMessage: l);
+        state = state.copyWith(isLoaded: false, errorMessage: l, page: state.page);
       }, (r) {
         state =
-            state.copyWith(isLoaded: false, errorMessage: '', upcomingMovies: r);
+            state.copyWith(isLoaded: false, errorMessage: '', upcomingMovies: [...state.upcomingMovies, ...r]);
       });
     } else if (category == Categories.popular) {
-      state = state.copyWith(isLoaded: true, errorMessage: '');
+      state = state.copyWith(isLoaded: state.isLoadMore ? false: true, errorMessage: '');
       final response = await MovieService.getMovieCategory(
-          apiPath: Api.popularMovie);
+          apiPath: Api.popularMovie, page: state.page);
       response.fold((l) {
         state = state.copyWith(isLoaded: false, errorMessage: l);
       }, (r) {
         state =
-            state.copyWith(isLoaded: false, errorMessage: '', popularMovies: r);
+            state.copyWith(isLoaded: false, errorMessage: '', popularMovies: [...state.popularMovies, ...r]);
       });
     } else {
-      state = state.copyWith(isLoaded: true, errorMessage: '');
-      final response = await MovieService.getMovieCategory(
-          apiPath: Api.topRatedMovie);
+      state = state.copyWith(isLoaded: state.isLoadMore ? false: true, errorMessage: '');      final response = await MovieService.getMovieCategory(
+          apiPath: Api.topRatedMovie, page: state.page);
       response.fold((l) {
         state = state.copyWith(isLoaded: false, errorMessage: l);
       }, (r) {
         state =
-            state.copyWith(isLoaded: false, errorMessage: '', topRatedMovies: r);
+            state.copyWith(isLoaded: false, errorMessage: '', topRatedMovies: [...state.topRatedMovies, ...r]);
       });
     }
 
+  }
+
+
+  void loadMore(){
+    state = state.copyWith(
+      page: state.page + 1,
+      isLoadMore: true
+    );
+    getMovieByCategory();
   }
 
 

@@ -38,9 +38,9 @@ import 'package:get/get_navigation/src/routes/transitions_type.dart';
               ),
             body: TabBarView(
               children: [
-                TabBarWidget(Categories.popular,'1'),
-                TabBarWidget(Categories.upcoming,'2'),
-                TabBarWidget(Categories.top_rated,'3'),
+                TabBarWidgets(Categories.popular,'1'),
+                TabBarWidgets(Categories.upcoming,'2'),
+                TabBarWidgets(Categories.top_rated,'3'),
               ]
             )
           ),
