@@ -24,7 +24,7 @@ class AuthService {
       await FirebaseChatCore.instance.createUserInFirestore(
         types.User(
             firstName: username,
-            id: response.credential!.providerId,
+            id: response.user!.uid,
             imageUrl: url,
             lastName: '',
             metadata: {'email': email, 'token': token}),

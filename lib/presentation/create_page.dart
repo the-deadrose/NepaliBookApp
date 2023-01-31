@@ -10,11 +10,10 @@ import '../providers/toggle_provider.dart';
 
 
 
-class AuthPage extends  ConsumerWidget {
+class CreatePage extends  ConsumerWidget {
 
-  final usernameController = TextEditingController();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final titleController = TextEditingController();
+  final detailController = TextEditingController();
 
   final _form = GlobalKey<FormState>();
 
@@ -30,7 +29,6 @@ class AuthPage extends  ConsumerWidget {
       }
     });
 
-    final isLogin = ref.watch(loginProvider);
     final image = ref.watch(imageProvider);
     final auth = ref.watch(authProvider);
     return Scaffold(
@@ -54,7 +52,7 @@ class AuthPage extends  ConsumerWidget {
           key: _form,
           child: Column(
             children: [
-              Text(isLogin ? 'Login Page' : 'SignUp Page', style: TextStyle(fontSize: 25.sp,
+              Text('Creat Page', style: TextStyle(fontSize: 25.sp,
                   color: Color(0xFFFFFCB2B),
                   fontWeight: FontWeight.bold),),
               SizedBox(
@@ -70,47 +68,15 @@ class AuthPage extends  ConsumerWidget {
                   width: 250.w,
                   child: Column(
                     children: [
-                      if(!isLogin)   Padding(
-                        padding: const EdgeInsets.only(
-                            top: 20, left: 10, right: 10, bottom: 8),
-                        child: TextFormField(
-                            controller: usernameController,
-                            validator: (value) {
-                              if(value!.isEmpty){
-                                return 'username is required';
-                              }else if(value.length > 20){
-                                return 'minimum character exceed';
-                              }
-                              return null;
-                            },
-                            style: TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
-                                contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 10),
-                                enabledBorder: OutlineInputBorder(),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.black,
-                                  ),
-                                ),
 
-                                // fillColor: Colors.black,
-                                filled: true,
-                                hintText: 'Username',
-                                hintStyle: TextStyle(color: Colors.grey)
-                            )
-                        ),
-                      ),
                       Padding(
                         padding: const EdgeInsets.only(
                             top: 20, left: 10, right: 10, bottom: 8),
                         child: TextFormField(
-                            controller: emailController,
+                            controller: titleController,
                             validator: (value) {
                               if(value!.isEmpty){
-                                return 'email is required';
-                              }else if(!value.contains('@')){
-                                return 'please enter valid email';
+                                return 'title is required';
                               }
                               return null;
                             },
@@ -127,7 +93,7 @@ class AuthPage extends  ConsumerWidget {
 
                                 // fillColor: Colors.black,
                                 filled: true,
-                                hintText: 'Email',
+                                hintText: 'Title',
                                 hintStyle: TextStyle(color: Colors.grey)
                             )
                         ),
@@ -138,14 +104,13 @@ class AuthPage extends  ConsumerWidget {
                         child: TextFormField(
                             validator: (value) {
                               if(value!.isEmpty){
-                                return 'password is required';
-                              }else if(value.length > 30){
+                                return 'detail is required';
+                              }else if(value.length > 500){
                                 return 'minimum character exceed';
                               }
                               return null;
                             },
-                            obscureText: true,
-                            controller: passwordController,
+                            controller: detailController,
                             decoration: InputDecoration(
                                 contentPadding: EdgeInsets.symmetric(
                                     vertical: 10, horizontal: 10),
@@ -157,13 +122,13 @@ class AuthPage extends  ConsumerWidget {
                                 ),
                                 // fillColor: Colors.black,
                                 filled: true,
-                                hintText: 'Password',
+                                hintText: 'Detail',
                                 hintStyle: TextStyle(color: Colors.grey)
                             )
                         ),
                       ),
 
-                      if(!isLogin)   InkWell(
+                      InkWell(
                         onTap: (){
                           ref.read(imageProvider.notifier).pickAnImage();
                         },
@@ -186,53 +151,25 @@ class AuthPage extends  ConsumerWidget {
                             FocusScope.of(context).unfocus();
                             if(_form.currentState!.validate()){
 
-                              if(isLogin){
-                                ref.read(authProvider.notifier).userLogin(
-                                    email: emailController.text.trim(),
-                                    password: passwordController.text.trim()
-                                );
-                              }else{
+
                                 if(image == null){
                                   SnackShow.showFailure(context, 'please select an image');
                                 }else{
-                                  ref.read(authProvider.notifier).userSignUp(
-                                      username: usernameController.text.trim(),
-                                      email: emailController.text.trim(),
-                                      password: passwordController.text.trim(),
-                                      image: image
-                                  );
+
                                 }
 
-                              }
                             }
 
 
                           },
                           child:auth.isLoad ? Center(child: CircularProgressIndicator(
                             color: Colors.white,
-                          )): Text(
-                            isLogin ? 'Login' : 'SignUp', style: TextStyle(fontSize: 20.sp),))
+                          )): Text('Submit', style: TextStyle(fontSize: 20.sp),))
                     ],
                   ),
                 ),
               ),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(isLogin ?'Don\'t have an account ?,' : 'Already have an account',
-                    style: TextStyle(color: Colors.grey),),
-                  TextButton(
-                      style: TextButton.styleFrom(
-                          foregroundColor: primary
-                      ),
-                      onPressed: () {
-                        _form.currentState!.reset();
-                        ref.read(loginProvider.notifier).change();
-                      },
-                      child: Text(isLogin ?  'Create One' : 'Login',style: TextStyle(color: Color(0xFFFFFCB2B)),))
-                ],
-              )
 
             ],
 

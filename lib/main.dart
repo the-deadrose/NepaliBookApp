@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_ui/presentation/auth_page.dart';
+import 'package:flutter_ui/presentation/status_page.dart';
 import 'package:get/get.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dio/dio.dart';
@@ -59,7 +62,37 @@ class Home extends StatelessWidget {
           home: child,
         );
       },
-      child:  AuthPage(),
+      child:  StatusPage(),
+    );
+  }
+}
+
+
+
+class Counter extends StatelessWidget {
+
+  StreamController<int> numberStream = StreamController();
+  
+  int number = 0;
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+          child: StreamBuilder<int>(
+            stream: numberStream.stream,
+            builder: (context, snapshot) {
+              return Center(child: Text('${snapshot.data}', style: TextStyle(fontSize: 25),));
+            }
+          )
+      ),
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        numberStream.sink.add(number++); 
+      },
+        child: Text('add'),
+      ),
     );
   }
 }
