@@ -3,13 +3,10 @@
 
 
 class Api{
-
-  static const baseUrl ='https://api.themoviedb.org/3';
-  static const popularMovie ='$baseUrl/movie/popular';
-  static const topRatedMovie ='$baseUrl/movie/top_rated';
-  static const upcomingMovie ='$baseUrl/movie/upcoming';
-  static const searchMovie =  '$baseUrl/search/movie';
-  static const getVideoId =  '$baseUrl/movie';
-
-
+  static const baseUrl = 'http://192.168.137.1:3000';
+  static const userLogin = '$baseUrl/api/userLogin';
+  static const userSignUp = '$baseUrl/api/userSignUp';
+  static const addProduct = '$baseUrl/api/create_products';
+  static const updateProduct = '$baseUrl/product/update';
+  static const removeProduct = '$baseUrl/products/remove';
 }

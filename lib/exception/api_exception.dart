@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
 
+
+
+
 class DioException  {
 
-  String getDioError(DioError dioError) {
+ static String getDioError(DioError dioError) {
     switch (dioError.type) {
 
       case DioErrorType.response:
@@ -19,7 +22,7 @@ class DioException  {
     }
   }
 
-  String  _handleStatusCode(Response response) {
+static  String  _handleStatusCode(Response response) {
     switch (response.statusCode) {
       case 400:
         return 'Bad request.';

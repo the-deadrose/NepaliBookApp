@@ -1,49 +1,35 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_ui/presentation/auth_page.dart';
 import 'package:flutter_ui/presentation/status_page.dart';
 import 'package:get/get.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:dio/dio.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 
 
-final dio = Dio();
-
-Future<void>  getData () async{
-  try{
-    final response = await dio.get('https://jsonplaceholder.typicode.com/posts');
-    print(response.data);
-  }on DioError catch(err){
-    print(err.message);
-    print(err.response);
-  }
-
-
-
-}
-
-
-
+final box = Provider<String?>((ref) => null);
 
 void main () async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Future.delayed(Duration(milliseconds: 500));
+ await Future.delayed(Duration(milliseconds: 500));
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        // statusBarColor: appColor
-      )
-  );
-  runApp(ProviderScope(child: Home()));
+ await Hive.initFlutter();
+
+ final userBox = await Hive.openBox<String>('user');
+
+SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      // statusBarColor: appColor
+    )
+);
+
+  runApp(ProviderScope(
+    overrides: [
+      box.overrideWithValue(userBox.get('userData'))
+    ],
+      child: Home()
+  ));
 }
 
 
@@ -62,37 +48,10 @@ class Home extends StatelessWidget {
           home: child,
         );
       },
-      child:  StatusPage(),
+      child:  StatusPage()
     );
   }
 }
 
 
 
-class Counter extends StatelessWidget {
-
-  StreamController<int> numberStream = StreamController();
-  
-  int number = 0;
-
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-          child: StreamBuilder<int>(
-            stream: numberStream.stream,
-            builder: (context, snapshot) {
-              return Center(child: Text('${snapshot.data}', style: TextStyle(fontSize: 25),));
-            }
-          )
-      ),
-      floatingActionButton: FloatingActionButton(onPressed: (){
-        numberStream.sink.add(number++); 
-      },
-        child: Text('add'),
-      ),
-    );
-  }
-}

@@ -1,34 +1,51 @@
 import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
 import '../common/snackShow.dart';
-import '../constants/colors.dart';
+import '../constant/color.dart';
+import '../models/product.dart';
 import '../providers/auth_provider.dart';
 import '../providers/crud_provider.dart';
 import '../providers/toggle_provider.dart';
+import '../services/crud_service.dart';
 
-
-
-class CreatePage extends  ConsumerWidget {
-
-  final titleController = TextEditingController();
-  final detailController = TextEditingController();
-  final priceController = TextEditingController();
-
-
-  final _form = GlobalKey<FormState>();
-
+class EditPage extends  ConsumerStatefulWidget {
+  final Product product;
+  EditPage(this.product);
 
   @override
-  Widget build(BuildContext context, ref) {
+  ConsumerState<EditPage> createState() => _EditPageState();
+}
+
+class _EditPageState extends ConsumerState<EditPage> {
+  TextEditingController titleController = TextEditingController();
+  TextEditingController detailController = TextEditingController();
+  TextEditingController priceController = TextEditingController();
+  final _form = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    titleController..text = widget.product.product_name;
+    detailController..text = widget.product.product_detail;
+    priceController..text = widget.product.price.toString();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
 
     ref.listen(crudProvider, (previous, next) {
       if(next.errorMessage.isNotEmpty){
         SnackShow.showFailure(context, next.errorMessage);
       }else if(next.isSuccess){
-        SnackShow.showSuccess(context, 'succesfully added');
+        ref.refresh(products);
+        SnackShow.showSuccess(context, 'succesfully updated');
         Get.back();
       }
     });
@@ -140,7 +157,7 @@ class CreatePage extends  ConsumerWidget {
                           padding: const EdgeInsets.only(
                               top: 10, left: 10, right: 10, bottom: 8),
                           child: TextFormField(
-                            keyboardType: TextInputType.number,
+                              keyboardType: TextInputType.number,
                               validator: (val){
                                 if(val!.isEmpty){
                                   return 'price is required';
@@ -176,7 +193,7 @@ class CreatePage extends  ConsumerWidget {
                             height: 150.h,
                             width: 250.w,
                             color: Colors.white,
-                            child: image == null ? Center(child: Text('select an image', style: TextStyle(color: Colors.black),)) : Image.file(File(image.path)),
+                            child: image == null ? Image.network(widget.product.image) : Image.file(File(image.path)),
                           ),
                         ),
 
@@ -190,21 +207,29 @@ class CreatePage extends  ConsumerWidget {
                               FocusScope.of(context).unfocus();
                               if(_form.currentState!.validate()){
 
-                                  if(image == null){
-                                    SnackShow.showFailure(context, 'please select an image');
-                                  }else{
-                                   ref.read(crudProvider.notifier).addPost(
-                                       title: titleController.text.trim(),
-                                       detail: detailController.text.trim(),
+                                if(image == null){
+                                  ref.read(crudProvider.notifier).updatePost(
+                                    title: titleController.text.trim(),
+                                    detail: detailController.text.trim(),
+                                    price: int.parse(priceController.text.trim()),
+                                    postId: widget.product.productId,
+                                    token: auth.user!.token,
+                                  );
+                                }else{
+                                  ref.read(crudProvider.notifier).updatePost(
+                                      title: titleController.text.trim(),
+                                      detail: detailController.text.trim(),
                                       price: int.parse(priceController.text.trim()),
-                                       token: auth.user!.token,
-                                       image: image
-                                   );
-
-                                  }
-
+                                      postId: widget.product.productId,
+                                      token: auth.user!.token,
+                                      image: image,
+                                      imageId: widget.product.public_id
+                                  );
 
                                 }
+
+
+                              }
 
 
 
@@ -228,4 +253,3 @@ class CreatePage extends  ConsumerWidget {
 
   }
 }
-
