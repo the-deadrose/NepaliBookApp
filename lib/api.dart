@@ -3,7 +3,7 @@
 
 
 class Api{
-  static const baseUrl = 'http://192.168.137.1:3000';
+  static const baseUrl = 'http://192.168.1.77:3000';
   static const userLogin = '$baseUrl/api/userLogin';
   static const userSignUp = '$baseUrl/api/userSignUp';
   static const addProduct = '$baseUrl/api/create_products';

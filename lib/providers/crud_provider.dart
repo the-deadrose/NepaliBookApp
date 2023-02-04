@@ -32,13 +32,13 @@ class CrudNotifier extends StateNotifier<CrudState> {
 
 
 
-  Future<void> deletePost({
+  Future<void> removeProduct({
     required String postId,
     required String imageId,
     required String token
   }) async {
     state = state.copyWith(isLoad: true, errorMessage: '', isSuccess: false);
-    final response = await CrudService.deletePost(postId: postId, imageId: imageId, token: token);
+    final response = await CrudService.removeProduct(postId: postId, imageId: imageId, token: token);
     response.fold((l) {
       state = state.copyWith(isLoad: false, errorMessage: l, isSuccess: false);
     }, (r) {

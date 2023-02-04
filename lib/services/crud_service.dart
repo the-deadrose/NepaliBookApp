@@ -37,7 +37,7 @@ class CrudService {
     try {
       try {
         final cloudinary =
-        CloudinaryPublic('dx5eyrlaf', 'sample_pics', cache: false);
+        CloudinaryPublic('da9kv9hpv', 'flutter-eshop', cache: false);
         CloudinaryResponse response = await cloudinary.uploadFile(
           CloudinaryFile.fromFile(image.path,
               resourceType: CloudinaryResourceType.Image),
@@ -80,7 +80,7 @@ class CrudService {
         }, options: Options(
             headers: {HttpHeaders.authorizationHeader: 'Bearer $token'}));
       } else {
-        final cloudinary = CloudinaryPublic('dx5eyrlaf', 'sample_pics', cache: false);
+        final cloudinary = CloudinaryPublic('da9kv9hpv', 'flutter-eshop', cache: false);
         CloudinaryResponse response = await cloudinary.uploadFile(
           CloudinaryFile.fromFile(image.path,
               resourceType: CloudinaryResourceType.Image),
@@ -104,7 +104,7 @@ class CrudService {
     }
   }
 
-  static Future<Either<String, bool>> deletePost(
+  static Future<Either<String, bool>> removeProduct(
       {required String postId,
         required String imageId,
         required String token

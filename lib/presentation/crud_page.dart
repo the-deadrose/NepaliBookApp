@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_ui/providers/auth_provider.dart';
+import 'package:flutter_ui/providers/crud_provider.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
@@ -9,9 +11,12 @@ import 'edit_page.dart';
 
 class CrudPage extends ConsumerWidget {
 
+  final _form = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context, ref) {
     final productData = ref.watch(products);
+    final auth = ref.watch(authProvider);
     return Scaffold(
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -30,7 +35,11 @@ class CrudPage extends ConsumerWidget {
                             IconButton(onPressed: (){
                               Get.to(() => EditPage(data[index]));
                             }, icon: Icon(Icons.edit)),
-                            IconButton(onPressed: (){}, icon: Icon(Icons.delete)),
+                            IconButton(onPressed: (){
+                              FocusScope.of(context).unfocus();
+                              ref.read(crudProvider.notifier).removeProduct(postId: data[index].productId, imageId: data[index].public_id, token: auth.user!.token);
+                              Get.back();
+                            }, icon: Icon(Icons.delete)),
                           ],
                         ),
                       ),
