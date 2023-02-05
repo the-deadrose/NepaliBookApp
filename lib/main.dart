@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_ui/models/cart_item.dart';
 import 'package:flutter_ui/presentation/status_page.dart';
 import 'package:get/get.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,14 +10,17 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 
 final box = Provider<String?>((ref) => null);
+final box1 = Provider<List<CartItem>>((ref) => []);
 
 void main () async{
   WidgetsFlutterBinding.ensureInitialized();
  await Future.delayed(Duration(milliseconds: 500));
 
  await Hive.initFlutter();
+ Hive.registerAdapter(CartItemAdapter());
 
  final userBox = await Hive.openBox<String>('user');
+ final cartBox = await Hive.openBox<CartItem>('carts');
 
 SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
@@ -26,7 +30,8 @@ SystemChrome.setSystemUIOverlayStyle(
 
   runApp(ProviderScope(
     overrides: [
-      box.overrideWithValue(userBox.get('userData'))
+      box.overrideWithValue(userBox.get('userData')),
+      box1.overrideWithValue(cartBox.values.toList())
     ],
       child: Home()
   ));

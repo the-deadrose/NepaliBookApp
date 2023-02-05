@@ -4,7 +4,6 @@ import 'package:flutter_ui/providers/auth_provider.dart';
 import 'package:flutter_ui/providers/crud_provider.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
 import '../services/crud_service.dart';
 import 'edit_page.dart';
 
