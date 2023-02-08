@@ -10,7 +10,6 @@ import 'edit_page.dart';
 
 class CrudPage extends ConsumerWidget {
 
-  final _form = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context, ref) {

@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_ui/providers/auth_provider.dart';
+import 'package:flutter_ui/providers/order_provider.dart';
 import '../providers/cart_provider.dart';
 
 
-
-
-class CartPage extends ConsumerWidget {
+class CartPage extends ConsumerStatefulWidget {
 
   @override
-  Widget build(BuildContext context, ref) {
+  ConsumerState<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends ConsumerState<CartPage> {
+  bool isLoad = false;
+
+  @override
+  Widget build(BuildContext context) {
     final cartData = ref.watch(cartProvider);
     final total = ref.watch(cartProvider.notifier).total;
+    final userData = ref.watch(authProvider);
     return Scaffold(
         body: SafeArea(
             child: cartData.isEmpty ? Center(child: Text('Add Some Product To cart')):
@@ -82,9 +90,24 @@ class CartPage extends ConsumerWidget {
                           ],
                         ),
                       ),
-                      ElevatedButton(onPressed: (){
-                        ref.read(cartProvider.notifier).cartClear();
-                      }, child: Text('CheckOut'))
+                      ElevatedButton(onPressed: ()async{
+                        setState(() {
+                          isLoad = true;
+                        });
+                        final response = await ref.read(order).orderCreate(total, cartData, userData.user!.id, userData.user!.token);
+                        setState(() {
+                          isLoad = false;
+                        });
+
+                        if(response == 'success'){
+                          ref.read(cartProvider.notifier).cartClear();
+                        }
+
+
+
+                      }, child: isLoad ? Center(child: CircularProgressIndicator(
+                        color: Colors.white,
+                      )) : Text('CheckOut'))
                     ],
                   )
                 ],

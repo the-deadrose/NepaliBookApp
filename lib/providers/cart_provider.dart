@@ -1,17 +1,13 @@
-
-
-
-
-
-
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-
 import '../common/snackShow.dart';
 import '../main.dart';
 import '../models/cart_item.dart';
 import '../models/product.dart';
+
+
 
 final cartProvider = StateNotifierProvider<CartProvider, List<CartItem>>(
         (ref) => CartProvider(ref.watch(box1)));
