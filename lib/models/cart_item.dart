@@ -28,4 +28,25 @@ class CartItem extends HiveObject{
     required this.productId
 });
 
+  factory CartItem.fromJson(Map<String, dynamic> json){
+    return CartItem(
+        price: json['price'],
+        productImage: json['productImage'],
+        productName: json['productName'],
+        quantity: json['quantity'],
+        productId: json['productId']
+    );
+  }
+
+  Map<String,dynamic> toJson(){
+    return {
+      'price': this.price,
+      'productImage': this.productImage,
+      'productName': this.productName,
+      'quantity': this.quantity,
+      'productId': this.productId
+    };
+  }
+
+
 }
