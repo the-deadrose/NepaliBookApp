@@ -6,31 +6,29 @@ import 'package:flutter_ui/view/home_page.dart';
 import 'package:get/get.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarColor: appColor,
-      )
-  );
-  runApp(Home());
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: appColor,
+  ));
+  runApp(const Home());
 }
-  class Home extends StatelessWidget {
-    // const ({Key? key}) : super(key: key);
 
+class Home extends StatelessWidget {
+  const Home({super.key});
 
-    @override
-    Widget build(BuildContext context) {
+  // const ({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return ScreenUtilInit(
-    designSize: const Size(411, 866),
-    minTextAdapt: true,
-    builder: (context , child) {
-    return GetMaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: child,
+      designSize: const Size(411, 866),
+      minTextAdapt: true,
+      builder: (context, child) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: child,
+        );
+      },
+      child: HomePage(),
     );
-    },
-    child:  HomePage(),
-    );
-    }
-    }
-
-
+  }
+}
